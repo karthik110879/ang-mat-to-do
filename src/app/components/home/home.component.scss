@@ -1,0 +1,35 @@
+.home-container {
+  background-color: aqua;
+  border-radius: 16px;
+  height: 100vh;
+  display: flex;
+  // flex-wrap: wrap;
+  flex-direction: column;
+  row-gap: 12px;
+  // justify-content: center;
+  // align-items: center;
+  padding: 2em;
+  align-items: flex-start;
+}
+
+
+.main-title{
+  padding: 6px;
+  font-weight: bolder;
+  color: rgb(20, 20, 20);
+}
+
+
+.notes-holder {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.add-note-btn{
+  height: 260px;
+  width: 220px;
+  border-radius: 12px;
+  cursor: pointer;
+  display: inline-block;
+}

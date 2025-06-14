@@ -1,0 +1,20 @@
+.note-container {
+  border: 1px solid black;
+
+  border-radius: 12px;
+  padding: 0.5rem;
+  background-color: burlywood;
+  height: 260px;
+  width: 220px;
+
+  display: flex;
+  flex-direction: column;
+
+  // text-overflow: ;
+}
+
+
+.note-header {
+  color: rgba(20, 20, 20, 0.8)
+}
+
