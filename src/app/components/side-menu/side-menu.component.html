@@ -1,11 +1,11 @@
-<p>side-menu works!</p>
+<p>Personal Notes</p>
 <mat-list>
   <div mat-subheader>Folders</div>
   @for (folder of folders; track folder) {
     <mat-list-item>
       <mat-icon matListItemIcon>folder</mat-icon>
       <div matListItemTitle>{{folder.name}}</div>
-      <div matListItemLine>{{folder.updated | date}}</div>
+      <!-- <div matListItemLine>{{folder.updated | date}}</div> -->
     </mat-list-item>
   }
   <mat-divider></mat-divider>
