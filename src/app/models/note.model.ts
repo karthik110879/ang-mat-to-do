@@ -7,7 +7,7 @@ export class Note {
   isFav: boolean;
 
   constructor(title:string,desc:string, isFav:boolean) {
-    this.id = uuidv4();
+    this.id = `NOTE_${uuidv4()}`;
     this.title = title;
     this.desc = desc;
     this.isFav = isFav;
