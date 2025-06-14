@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatIconModule} from '@angular/material/icon';
 import {MatListModule} from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 
 export interface Section {
@@ -12,14 +13,14 @@ export interface Section {
 
 @Component({
   selector: 'app-side-menu',
-  imports: [MatListModule, MatIconModule, MatDividerModule, DatePipe],
+  imports: [MatSidenavModule , MatListModule, MatIconModule, MatDividerModule, DatePipe],
   templateUrl: './side-menu.component.html',
   styleUrl: './side-menu.component.scss'
 })
 export class SideMenuComponent {
 folders: Section[] = [
     {
-      name: 'Photos',
+      name: 'Home',
       updated: new Date('1/1/16'),
     },
     {
@@ -38,6 +39,10 @@ folders: Section[] = [
     },
     {
       name: 'Kitchen Remodel',
+      updated: new Date('1/18/16'),
+    },
+    {
+      name: 'New Project Idea',
       updated: new Date('1/18/16'),
     },
   ];

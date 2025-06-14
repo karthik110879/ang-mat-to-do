@@ -1,13 +1,15 @@
 
 <h2 mat-dialog-title>Note Title</h2>
 
-<mat-dialog-content class="mat-typography editor-holder">
-   <ngx-editor
-      [editor]="editor"
-      [ngModel]="html"
-      [disabled]="false"
-      [placeholder]="'Type here...'"
-    ></ngx-editor>
+<mat-dialog-content class="mat-typography editor-holder" style="height: auto;">
+  <div class="NgxEditor__Content">
+    <ngx-editor
+       [editor]="editor"
+       [ngModel]="html"
+       [disabled]="false"
+       [placeholder]="'Type here...'"
+     ></ngx-editor>
+  </div>
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
