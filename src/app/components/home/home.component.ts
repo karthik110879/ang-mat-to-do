@@ -18,12 +18,11 @@ itemId: string | null = null;
 constructor(private route: ActivatedRoute) {}
 
 ngOnInit(): void {
-  //  this.itemId = this.route.snapshot.paramMap.get('category');
-  //  this.route.paramMap.subscribe(params => {
-  //     this.itemId = params.get('category'); // Reactively update on route changes
-  //     console.log('MENU NAME ',this.itemId );
-  //   });
-  //   console.log('MENU NAME ',this.route );
+   this.itemId = this.route.snapshot.paramMap.get('category');
+   this.route.paramMap.subscribe(params => {
+      this.itemId = params.get('category'); // Reactively update on route changes
+      console.log('MENU NAME ',this.itemId );
+    });
   }
 
 

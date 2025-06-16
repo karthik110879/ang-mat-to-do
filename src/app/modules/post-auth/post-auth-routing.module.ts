@@ -8,8 +8,23 @@ const routes: Routes = [
     path: '',
     component: PostAuthComponent,
     children: [
-      {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
-      {path: 'dashboard',  component: HomeComponent},
+      {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full'
+      },
+      {
+        path: 'dashboard',
+        component: HomeComponent,
+      },
+      {
+        path: 'folder/:category/:categoryId',
+        component: HomeComponent,
+      },
+      {
+        path: 'folder/:category/:categoryId',
+        component: HomeComponent,
+      },
     ]
   }
 ];

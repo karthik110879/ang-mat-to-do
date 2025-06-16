@@ -60,12 +60,9 @@ folders: Section[] = [
   ];
 
 
-
-
-
   onSelect(folder:Section) {
     console.log('folder', folder);
     //get current route
-    this.router.navigate(['/home', folder.path]);
+    this.router.navigate(['/folder', folder.path , '255452']);
   }
 }
