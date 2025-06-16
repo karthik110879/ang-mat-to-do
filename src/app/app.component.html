@@ -1,14 +1,2 @@
-<app-header />
-<mat-drawer-container class="container" autosize>
-  <mat-drawer #drawer class="example-sidenav"
-    mode="side"
-    [opened]="sidNavService.state()">
-    <app-side-menu />
-  </mat-drawer>
-
-  <div class="example-sidenav-content">
-    <router-outlet />
-  </div>
-
-</mat-drawer-container>
+<router-outlet />
 
