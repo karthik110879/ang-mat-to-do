@@ -6,19 +6,17 @@ import { HeaderComponent } from '../../components/header/header.component';
 import { MatDrawer, MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 
-
-
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    PostAuthRoutingModule,
+    declarations: [],
+    imports: [
+        CommonModule,
+        PostAuthRoutingModule,
 
-    MatSidenavModule,
-		MatButtonModule,
-		SideMenuComponent,
-		HeaderComponent,
-    MatDrawer
-  ]
+        MatSidenavModule,
+        MatButtonModule,
+        SideMenuComponent,
+        HeaderComponent,
+        MatDrawer,
+    ],
 })
-export class PostAuthModule { }
+export class PostAuthModule {}

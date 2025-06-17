@@ -6,24 +6,21 @@ import { routes } from '../../app.routes';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-home',
-  imports: [CategoryComponent],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
-
+    selector: 'app-home',
+    imports: [CategoryComponent],
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit {
-itemId: string | null = null;
+    itemId: string | null = null;
 
-constructor(private route: ActivatedRoute) {}
+    constructor(private route: ActivatedRoute) {}
 
-ngOnInit(): void {
-   this.itemId = this.route.snapshot.paramMap.get('category');
-   this.route.paramMap.subscribe(params => {
-      this.itemId = params.get('category'); // Reactively update on route changes
-      console.log('MENU NAME ',this.itemId );
-    });
-  }
-
-
+    ngOnInit(): void {
+        // this.itemId = this.route.snapshot.paramMap.get('category');
+        // this.route.paramMap.subscribe((params) => {
+        //     this.itemId = params.get('category'); // Reactively update on route changes
+        //     console.log('MENU NAME ', this.itemId);
+        // });
+    }
 }

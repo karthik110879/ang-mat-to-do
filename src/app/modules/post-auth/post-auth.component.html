@@ -1,15 +1,13 @@
 <app-header />
 <mat-drawer-container class="container-mx-auto" autosize>
-  <!-- <p>Hello world</p> -->
-  <mat-drawer #drawer class="example-sidenav"
-  mode="side"
-  [opened]="sidNavService.state()">
-    <app-side-menu />
-  </mat-drawer>
+    <!-- <p>Hello world</p> -->
+    <mat-drawer #drawer class="example-sidenav" mode="side" [opened]="sidNavService.state()">
+        <app-side-menu />
+    </mat-drawer>
 
-  <div class="example-sidenav-content">
-    <router-outlet />
-  </div>
+    <div class="example-sidenav-content">
+        <router-outlet />
+    </div>
 
 </mat-drawer-container>
 <!-- <div class="container mx-auto">

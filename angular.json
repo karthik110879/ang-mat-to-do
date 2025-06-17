@@ -32,7 +32,6 @@
               }
             ],
             "styles": [
-              "./src/tailwind.css",
               "@angular/material/prebuilt-themes/cyan-orange.css",
               "src/styles.scss"
             ],

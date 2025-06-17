@@ -4,33 +4,33 @@ import { PostAuthComponent } from './post-auth.component';
 import { HomeComponent } from '../../components/home/home.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: PostAuthComponent,
-    children: [
-      {
+    {
         path: '',
-        redirectTo: 'dashboard',
-        pathMatch: 'full'
-      },
-      {
-        path: 'dashboard',
-        component: HomeComponent,
-      },
-      {
-        path: 'folder/:category/:categoryId',
-        component: HomeComponent,
-      },
-      {
-        path: 'folder/:category/:categoryId',
-        component: HomeComponent,
-      },
-    ]
-  }
+        component: PostAuthComponent,
+        children: [
+            {
+                path: '',
+                redirectTo: 'dashboard',
+                pathMatch: 'full',
+            },
+            {
+                path: 'dashboard',
+                component: HomeComponent,
+            },
+            {
+                path: 'folder/:category',
+                component: HomeComponent,
+            },
+            {
+                path: 'folder/:category/:categoryId',
+                component: HomeComponent,
+            },
+        ],
+    },
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule],
 })
 export class PostAuthRoutingModule {}
