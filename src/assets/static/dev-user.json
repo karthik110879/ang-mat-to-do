@@ -1,0 +1,53 @@
+{
+  "id": "USER_123e4567-e89b-12d3-a456-426614174000",
+  "name": "John Doe",
+  "email": "john.doe@example.com",
+  "passwordHash": "hashed_password_123",
+  "createdAt": "2025-06-17T12:00:00.000Z",
+  "folders": [
+    {
+      "id": "FOLD_9b95b14e-5af9-4f4e-aaa2-0f9a5e3d6a01",
+      "name": "Personal",
+      "path": "/users/john_doe/personal",
+      "updated": "2025-06-17T12:00:00.000Z"
+    }
+  ],
+  "notes": [
+    {
+      "id": "NOTE_1e932f48-b327-42b4-b46f-6f2fc3eab1b1",
+      "title": "Meeting Notes",
+      "desc": "Discussed project goals and deadlines.",
+      "isFav": false
+    },
+    {
+      "id": "NOTE_4ac6d8b7-0a0b-46b3-9e71-2cb6e5ac17c6",
+      "title": "Grocery List",
+      "desc": "Eggs, Milk, Bread, Butter",
+      "isFav": true
+    },
+    {
+      "id": "NOTE_3df5b2ab-b275-455a-b73c-48cfc64d1973",
+      "title": "Workout Plan",
+      "desc": "Monday: Chest, Tuesday: Back, etc.",
+      "isFav": false
+    },
+    {
+      "id": "NOTE_5f8ee1bc-0bb5-4cf5-bb6c-6c8e149ec9f4",
+      "title": "Book Ideas",
+      "desc": "Sci-fi story set in post-apocalyptic world",
+      "isFav": true
+    },
+    {
+      "id": "NOTE_d41c99f4-5d02-489f-98db-401e9ce5b301",
+      "title": "Todo List",
+      "desc": "1. Finish assignment\n2. Call plumber",
+      "isFav": false
+    },
+    {
+      "id": "NOTE_6a8ef4dc-2c76-4a5f-a2dd-1f3bfb528474",
+      "title": "Quotes",
+      "desc": "“The only limit to our realization of tomorrow is our doubts of today.”",
+      "isFav": true
+    }
+  ]
+}

@@ -1,24 +1,28 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PreAuthComponent } from './pre-auth.component'; // make sure this exists
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: PreAuthComponent
+    redirectTo: 'login',
+    pathMatch: 'full'
   },
-  // {
-  //   path: 'login',
-  //   component: PreAuthComponent
-  // },
-  // {
-  //   path: 'signup',
-  //   component: PreAuthComponent
-  // },
-  // {
-  //   path: 'forgot-password',
-  //   component: PreAuthComponent
-  // },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'signup',
+    component: RegisterComponent
+  },
+  {
+    path: 'forgot-password',
+    component: ForgotPasswordComponent
+  },
   // {
   //   path: 'about',
   //   component: PreAuthComponent

@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-pre-auth',
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './pre-auth.component.html',
   styleUrl: './pre-auth.component.scss'
 })
