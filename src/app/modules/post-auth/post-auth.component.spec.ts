@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SideMenuComponent } from './side-menu.component';
+import { PostAuthComponent } from './post-auth.component';
 
-describe('SideMenuComponent', () => {
-  let component: SideMenuComponent;
-  let fixture: ComponentFixture<SideMenuComponent>;
+describe('PostAuthComponent', () => {
+  let component: PostAuthComponent;
+  let fixture: ComponentFixture<PostAuthComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SideMenuComponent]
+      imports: [PostAuthComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SideMenuComponent);
+    fixture = TestBed.createComponent(PostAuthComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

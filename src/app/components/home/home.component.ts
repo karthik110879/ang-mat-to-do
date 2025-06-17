@@ -1,22 +1,26 @@
-import { Component } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavModule } from '@angular/material/sidenav';
+import { Component, OnInit } from '@angular/core';
 import { NoteComponent } from '../note/note.component';
 import { Note } from '../../models/note.model';
+import { CategoryComponent } from '../category/category.component';
+import { routes } from '../../app.routes';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-home',
-  imports: [NoteComponent],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
-
+    selector: 'app-home',
+    imports: [CategoryComponent],
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.scss',
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+    itemId: string | null = null;
 
+    constructor(private route: ActivatedRoute) {}
 
-  addNewNote() {
-    const newNote = new Note('','',false)
-    console.log('New note ',newNote );
-
-  }
+    ngOnInit(): void {
+        // this.itemId = this.route.snapshot.paramMap.get('category');
+        // this.route.paramMap.subscribe((params) => {
+        //     this.itemId = params.get('category'); // Reactively update on route changes
+        //     console.log('MENU NAME ', this.itemId);
+        // });
+    }
 }

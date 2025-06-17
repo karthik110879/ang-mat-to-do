@@ -8,7 +8,7 @@ import { SidenavService } from './services/sidenav.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,MatSidenavModule, MatButtonModule, SideMenuComponent, HeaderComponent],
+  imports: [RouterOutlet,],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

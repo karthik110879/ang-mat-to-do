@@ -1,0 +1,8 @@
+mat-list-item:hover {
+  background-color: #f84a4a; /* Light gray on hover */
+  cursor: pointer;
+}
+
+mat-list-item.active {
+  background-color: #1c51bb; /* Light blue for selected item */
+}

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NoteEditorComponent } from './note-editor.component';
+import { PreAuthComponent } from './pre-auth.component';
 
-describe('NoteEditorComponent', () => {
-  let component: NoteEditorComponent;
-  let fixture: ComponentFixture<NoteEditorComponent>;
+describe('PreAuthComponent', () => {
+  let component: PreAuthComponent;
+  let fixture: ComponentFixture<PreAuthComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NoteEditorComponent]
+      imports: [PreAuthComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(NoteEditorComponent);
+    fixture = TestBed.createComponent(PreAuthComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

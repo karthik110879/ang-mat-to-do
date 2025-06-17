@@ -1,19 +1,21 @@
 <mat-list>
-  <div mat-subheader>Folders</div>
-  @for (folder of folders; track folder) {
-    <mat-list-item>
-      <mat-icon matListItemIcon>folder</mat-icon>
-      <div matListItemTitle>{{folder.name}}</div>
-      <!-- <div matListItemLine>{{folder.updated | date}}</div> -->
+    <div mat-subheader>Folders</div>
+    @for (folder of folders; track folder) {
+    <mat-list-item (click)="onSelect(folder)" [class.active]="selectedNavMenu === folder"
+>
+        <mat-icon matListItemIcon>folder</mat-icon>
+        <div matListItemTitle>{{folder.name}}</div>
+        <div matListItemLine>{{folder.path }}</div>
+        <!-- <div matListItemLine>{{folder.updated | date}}</div> -->
     </mat-list-item>
-  }
-  <mat-divider></mat-divider>
-  <div mat-subheader>Recent Notes</div>
-  @for (note of notes; track note) {
+    }
+    <mat-divider></mat-divider>
+    <div mat-subheader>Recent Notes</div>
+    @for (note of notes; track note) {
     <mat-list-item>
-      <mat-icon matListItemIcon>note</mat-icon>
-      <div matListItemTitle>{{note.name}}</div>
-      <div matListItemLine>{{note.updated | date}}</div>
+        <mat-icon matListItemIcon>note</mat-icon>
+        <div matListItemTitle>{{note.name}}</div>
+        <div matListItemLine>{{note.updated | date}}</div>
     </mat-list-item>
-  }
+    }
 </mat-list>
