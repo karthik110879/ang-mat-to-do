@@ -23,6 +23,6 @@ export class LocalStorageService {
     }
 
     isAuthAvailable():boolean {
-        return JSON.stringify(localStorage.getItem('authData')) ? true : false;
+        return !JSON.stringify(localStorage.getItem('authData')) ? false : true;
     }
 }

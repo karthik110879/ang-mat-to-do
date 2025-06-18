@@ -29,4 +29,15 @@ export class LoginComponent {
             this.router.navigate(['auth']);
         }
     }
+
+    goToSignup() {
+        console.log('On SIGNUP');
+        this.router.navigate(['signup']);
+
+    }
+
+    goToForgotPassword() {
+        this.router.navigate(['forgot-password']);
+    }
+
 }
