@@ -1,23 +1,28 @@
-import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { User } from '../models/user.model';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class LocalStorageService {
+    constructor(
+        private httpClient: HttpClient
+    ){}
 
-  constructor() { }
+    setEmptyStore() {
+        return localStorage.setItem('notes', JSON.stringify([]));
+    }
 
-  setEmptyStore() {
-    return localStorage.setItem('notes', JSON.stringify([]))
-  }
+    getDummyUser() {
+        return this.httpClient.get(`/assets/static/dev-user.json`);
+    }
 
-  add() {
+    setDummyUser(data:any) {
+        localStorage.setItem('authData', JSON.stringify(data));
+    }
 
-  }
-  update() {
-
-  }
-  delete() {
-
-  }
+    isAuthAvailable():boolean {
+        return !JSON.stringify(localStorage.getItem('authData')) ? false : true;
+    }
 }
