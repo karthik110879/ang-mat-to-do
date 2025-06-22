@@ -1,5 +1,14 @@
 <mat-list>
-    <div mat-subheader>Folders</div>
+    <div mat-subheader class="flex items-center justify-between">
+        <span>
+            Folders
+        </span>
+        <button mat-icon-button class="example-icon cursor-pointer"
+            aria-label="Example icon-button with share icon"
+            (click)="onAddNewFolder()">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
     @for (folder of folders; track folder) {
     <mat-list-item (click)="onSelect(folder)" [class.active]="selectedNavMenu === folder"
 >

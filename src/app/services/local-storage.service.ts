@@ -48,4 +48,9 @@ export class LocalStorageService {
         if(!authData) return null;
         return JSON.parse(authData);
     }
+
+    getLoginUserId() {
+        const authData = this.getAuthData();
+        return authData?.user?.id;
+    }
 }
