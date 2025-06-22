@@ -1,5 +1,5 @@
 import { CommonModule, DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
@@ -7,6 +7,9 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { Route, Router, RouterModule } from '@angular/router';
 import { Folder } from '../../models/folder.model';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDialog } from '@angular/material/dialog';
+import { AddFolderComponent } from '../add-folder/add-folder.component';
 
 
 
@@ -17,6 +20,7 @@ import { Folder } from '../../models/folder.model';
         MatListModule,
         MatIconModule,
         MatDividerModule,
+        MatToolbarModule,
         DatePipe,
         FormsModule,
         CommonModule,
@@ -26,6 +30,9 @@ import { Folder } from '../../models/folder.model';
     styleUrl: './side-menu.component.scss',
 })
 export class SideMenuComponent implements OnInit {
+      private readonly dialogService = inject(MatDialog);
+      private readonly router = inject(Router);
+
 
     selectedNavMenu!:Folder;
 
@@ -70,7 +77,7 @@ export class SideMenuComponent implements OnInit {
         },
     ];
 
-    constructor(private router: Router) {}
+    constructor() {}
 
     ngOnInit(): void {
         this.selectedNavMenu = this.folders[0]
@@ -83,5 +90,12 @@ export class SideMenuComponent implements OnInit {
         this.selectedNavMenu = folder;
         //Navigate to the selected path
         this.router.navigate(['/auth/folder/', folder.path]);
+    }
+
+    onAddNewFolder() {
+        const dialogRef = this.dialogService.open(AddFolderComponent);
+        dialogRef.afterClosed().subscribe((d) => {
+            console.log('After Closed ==>', d);
+        });
     }
 }

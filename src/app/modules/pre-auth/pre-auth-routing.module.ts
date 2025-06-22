@@ -4,6 +4,7 @@ import { PreAuthComponent } from './pre-auth.component'; // make sure this exist
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { notLoggedInGuard } from '../../guards/login.guard';
 
 const routes: Routes = [
     {
@@ -13,18 +14,21 @@ const routes: Routes = [
     },
     {
         path: 'login',
+        canActivate: [notLoggedInGuard],
         component: LoginComponent,
     },
     {
         path: 'signup',
+        canActivate: [notLoggedInGuard],
         component: RegisterComponent,
     },
     {
         path: 'forgot-password',
+        canActivate: [notLoggedInGuard],
         component: ForgotPasswordComponent,
     },
     // {
-    //   path: 'about',
+    //   path: '**',
     //   component: PreAuthComponent
     // },
 ];

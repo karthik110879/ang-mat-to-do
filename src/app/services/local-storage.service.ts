@@ -23,6 +23,34 @@ export class LocalStorageService {
     }
 
     isAuthAvailable():boolean {
-        return !JSON.stringify(localStorage.getItem('authData')) ? false : true;
+        if(!JSON.stringify(localStorage.getItem('authData'))) {
+            return false;
+        }
+        return true
+    }
+
+    isUserAuthenticated():boolean {
+        const authData = this.getAuthData();
+        if(!authData || !authData.token || authData.token=='' || !authData.user ) return false;
+        return true;
+    }
+
+    setAuthData(data:any){
+        localStorage.setItem('authData', JSON.stringify(data));
+    }
+
+    clearAuthData(){
+        localStorage.removeItem('authData');
+    }
+
+    getAuthData(){
+        let authData = localStorage.getItem('authData')
+        if(!authData) return null;
+        return JSON.parse(authData);
+    }
+
+    getLoginUserId() {
+        const authData = this.getAuthData();
+        return authData?.user?.id;
     }
 }

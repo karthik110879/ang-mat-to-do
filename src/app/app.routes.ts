@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
+import { loginGuard } from './guards/login.guard';
 
 export const routes: Routes = [
     {
         path: '',
-        // canActivate: [],
         loadChildren: () =>
             import(`./modules/pre-auth/pre-auth.module`).then(
                 (m) => m.PreAuthModule
@@ -11,10 +11,7 @@ export const routes: Routes = [
     },
     {
         path: 'auth',
-        // canActivate: [],
-        loadChildren: () =>
-            import(`./modules/post-auth/post-auth.module`).then(
-                (m) => m.PostAuthModule
-            ),
+        canActivate: [loginGuard],
+        loadChildren: () =>import(`./modules/post-auth/post-auth.module`).then((m) => m.PostAuthModule),
     },
 ];
