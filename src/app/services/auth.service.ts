@@ -33,6 +33,11 @@ export class AuthService {
         );
     }
 
+    logout() {
+        this.localstorageService.clearAuthData();
+        this.router.navigate(['/login']);
+    }
+
     toLogin(user:ILoginUser) {
         this.login(user).subscribe({
             next: (authData) => {

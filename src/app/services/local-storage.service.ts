@@ -39,6 +39,10 @@ export class LocalStorageService {
         localStorage.setItem('authData', JSON.stringify(data));
     }
 
+    clearAuthData(){
+        localStorage.removeItem('authData');
+    }
+
     getAuthData(){
         let authData = localStorage.getItem('authData')
         if(!authData) return null;
