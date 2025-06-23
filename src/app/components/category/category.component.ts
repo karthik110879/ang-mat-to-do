@@ -12,6 +12,7 @@ import {
 import { Folder } from '../../models/sidenav.model';
 import { NoteService } from '../../services/note.service';
 import { LocalStorageService } from '../../services/local-storage.service';
+import { INote } from '../../interfaces/note.interface.model';
 
 @Component({
     selector: 'app-category',
@@ -25,6 +26,8 @@ export class CategoryComponent implements OnInit {
     private readonly localstorageService = inject(LocalStorageService);
 
     selectedFolderId: string | null = '';
+    allNotes:any[] = []
+
     constructor() {}
 
     ngOnInit(): void {
@@ -42,8 +45,9 @@ export class CategoryComponent implements OnInit {
         const userId = this.localstorageService.getLoginUserId();
 
         this.noteService.getAllNotes(userId, folderId).subscribe({
-            next:(Notes) => {
-                console.log('Notes', Notes);
+            next:(notesRes) => {
+                console.log('Notes', notesRes);
+                this.allNotes = notesRes;
             },
             error:(error) => {
                 console.log('error', error);

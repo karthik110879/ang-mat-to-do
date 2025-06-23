@@ -4,5 +4,5 @@ export interface INote {
   id: string;
   title: string;
   desc: string;
-  isFav: boolean;
+  isFav?: boolean;
 }

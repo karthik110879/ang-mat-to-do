@@ -2,11 +2,9 @@
     (click)="opeNote($event)">
     <div class="w-50 h-55 ">
 
-        <div class="text-xl font-medium text-black dark:text-white">Note Header</div>
-        <p class="text-gray-500 dark:text-gray-400 ">Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's
-            standard dummy text ever since the 1500s, when an unknown .
-
+        <div class="text-xl font-medium text-black dark:text-white">{{noteMeta.title}}</div>
+        <p class="text-gray-500 dark:text-gray-400 ">
+            {{noteMeta.content}}
         </p>
     </div>
 

@@ -20,7 +20,10 @@ export class NoteService {
     getAllNotes(userId:string, folderId:string):Observable<any> {
         return this.http.get(this.API_ENDPOINT + `auth/user/${userId}/folders/${folderId}/notes`)
     }
-    createNote() {}
+
+    createNote(userId:string, folderId:string, notePayload:any):Observable<any> {
+       return this.http.post(this.API_ENDPOINT + `auth/user/${userId}/folder/${folderId}/note`,notePayload);
+    }
 
     updateNote() {}
 }

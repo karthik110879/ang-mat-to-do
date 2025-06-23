@@ -1,3 +1,12 @@
-<div class="flex flex-wrap flex-direction-column">
-    <app-note />
+<div class="flex flex-wrap flex-direction-column gap-6">
+    @if(allNotes.length > 0) {
+        @for (note of allNotes; track note?.id ?? note) {
+            <app-note [noteMeta]="note" />
+        }
+    } @else {
+        <!-- Empty notes show No notes UI  -->
+         <div>
+            <h2 class="text-center ">Notes not created, Try creating a note!! :)</h2>
+         </div>
+    }
 </div>
