@@ -17,7 +17,11 @@ export class FolderService {
     constructor() {}
 
     createFolder(userId:string, title:any):Observable<any> {
-        return this.http.post(this.API_ENDPOINT + `auth/user/${userId}/fldr/`, title)
+        return this.http.post(this.API_ENDPOINT + `auth/user/${userId}/folder/`, title)
+    }
+
+    getAllFolders(userId:string) : Observable<any> {
+        return this.http.get(this.API_ENDPOINT + `auth/user/${userId}/folders/`);
     }
 
     updateFolderTitle() {}

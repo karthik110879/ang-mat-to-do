@@ -9,14 +9,21 @@
             <mat-icon>add</mat-icon>
         </button>
     </div>
-    @for (folder of folders; track folder) {
-    <mat-list-item (click)="onSelect(folder)" [class.active]="selectedNavMenu === folder"
->
-        <mat-icon matListItemIcon>folder</mat-icon>
-        <div matListItemTitle>{{folder.name}}</div>
-        <div matListItemLine>{{folder.path }}</div>
-        <!-- <div matListItemLine>{{folder.updated | date}}</div> -->
-    </mat-list-item>
+    @if(folders.length > 0) {
+
+        @for (folder of folders; track folder) {
+            <mat-list-item (click)="onSelect(folder)" [class.active]="selectedNavMenu === folder"
+        >
+                <mat-icon matListItemIcon>folder</mat-icon>
+                <div matListItemTitle>{{folder.name}}</div>
+                <div matListItemLine>{{folder.path }}</div>
+                <!-- <div matListItemLine>{{folder.updated | date}}</div> -->
+            </mat-list-item>
+        }
+    } @else {
+        <div class="flex content-center justify-center p-1">
+            <p class="flex p-4">No folders created</p>
+        </div>
     }
     <mat-divider></mat-divider>
     <div mat-subheader>Recent Notes</div>

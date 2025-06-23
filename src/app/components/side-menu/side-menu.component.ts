@@ -5,11 +5,14 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { Route, Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Route, Router, RouterModule } from '@angular/router';
 import { Folder } from '../../models/folder.model';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialog } from '@angular/material/dialog';
 import { AddFolderComponent } from '../add-folder/add-folder.component';
+import { FolderService } from '../../services/folder.service';
+import { LocalStorageService } from '../../services/local-storage.service';
+import { IFolder } from '../../interfaces/folder.interface.model';
 
 
 
@@ -32,30 +35,14 @@ import { AddFolderComponent } from '../add-folder/add-folder.component';
 export class SideMenuComponent implements OnInit {
       private readonly dialogService = inject(MatDialog);
       private readonly router = inject(Router);
+      private readonly activatedRouter = inject(ActivatedRoute);
+      private readonly localStorageService = inject(LocalStorageService);
+      private readonly folderService = inject(FolderService);
 
 
-    selectedNavMenu!:Folder;
+    selectedNavMenu!:IFolder;
 
-    folders: Folder[] = [
-        {
-            id: '',
-            name: 'Home',
-            updated: new Date('1/1/16'),
-            path: 'home',
-        },
-        {
-            id: '',
-            name: 'Recipes',
-            updated: new Date('1/17/16'),
-            path: 'recipes',
-        },
-        {
-            id: '',
-            name: 'Work',
-            updated: new Date('1/28/16'),
-            path: 'work',
-        },
-    ];
+    folders: IFolder[] = [];
     notes: Folder[] = [
         {
             id: '',
@@ -80,16 +67,19 @@ export class SideMenuComponent implements OnInit {
     constructor() {}
 
     ngOnInit(): void {
-        this.selectedNavMenu = this.folders[0]
+        this.activatedRouter.paramMap.subscribe(params => {
+            console.log('activatedRouter ==>',params.get('category'));
+        })
+        const uiserId = this.localStorageService.getLoginUserId();
+        this.getAllFolders(uiserId);
     }
 
-    onSelect(folder: Folder) {
+    onSelect(folder: IFolder) {
         console.log('folder', folder);
-
         //set the currentNav selection
         this.selectedNavMenu = folder;
         //Navigate to the selected path
-        this.router.navigate(['/auth/folder/', folder.path]);
+        this.router.navigate(['/auth/folder/', folder.id]);
     }
 
     onAddNewFolder() {
@@ -97,5 +87,32 @@ export class SideMenuComponent implements OnInit {
         dialogRef.afterClosed().subscribe((d) => {
             console.log('After Closed ==>', d);
         });
+    }
+
+    getAllFolders(userId:string) {
+        this.folderService.getAllFolders(userId).subscribe({
+            next:(data) => {
+                console.log('data',data);
+                data.forEach((fldr:any) => {
+                    const folder:IFolder = {
+                        id: fldr.folderId,
+                        createdUserId: fldr.userId,
+                        name: fldr.name,
+                        path: `${fldr.name.toLowerCase()}`,
+                    }
+
+                    this.folders.push(folder);
+                });
+                if(this.folders.length > 0) {
+                    this.selectedNavMenu = this.folders[0];
+                    this.onSelect(this.selectedNavMenu);
+                } else {
+                    // folders are empty
+                }
+            },
+            error:(error) => {
+                console.log('error',error);
+            }
+        })
     }
 }

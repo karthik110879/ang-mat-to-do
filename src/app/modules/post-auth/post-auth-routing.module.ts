@@ -18,7 +18,7 @@ const routes: Routes = [
                 component: HomeComponent,
             },
             {
-                path: 'folder/:category',
+                path: 'folder/:folderId',
                 component: HomeComponent,
             },
             {
