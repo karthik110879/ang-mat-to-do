@@ -1,12 +1,17 @@
-<h2 mat-dialog-title>Note Title</h2>
+<form [formGroup]="noteForm">
+    <h2 mat-dialog-title>{{newNoteTitie || 'New'}}</h2>
 
-<mat-dialog-content class="mat-typography editor-holder" style="height: auto;">
-    <div class="NgxEditor__Content">
-        <ngx-editor [editor]="editor" [ngModel]="html" [disabled]="false" [placeholder]="'Type here...'"></ngx-editor>
-    </div>
-</mat-dialog-content>
+    <mat-dialog-content class="mat-typography editor-holder" style="height: auto;">
+        <div class="NgxEditor__Content">
+            <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
+            <ngx-editor [editor]="editor" formControlName="content"
+                [placeholder]="'Type here...'"></ngx-editor>
+        </div>
+    </mat-dialog-content>
 
-<mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Save</button>
-</mat-dialog-actions>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="onSaveNote()">Save</button>
+    </mat-dialog-actions>
+
+</form>
