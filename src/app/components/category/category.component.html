@@ -1,12 +1,19 @@
-<div class="flex flex-wrap flex-direction-column gap-6">
+<div class="w-full h-full">
     @if(allNotes.length > 0) {
-        @for (note of allNotes; track note?.id ?? note) {
-            <app-note [noteMeta]="note" />
-        }
+        <div class="flex flex-wrap w-full gap-6">
+
+            @for (note of allNotes; track note?.id ?? note) {
+                <app-note [noteMeta]="note" />
+            }
+        </div>
     } @else {
         <!-- Empty notes show No notes UI  -->
-         <div>
-            <h2 class="text-center ">Notes not created, Try creating a note!! :)</h2>
+         <div class="flex flex-col gap-6 justify-center items-center mt-16">
+
+            <img class="w-40 h-40 p-1" src="assets/img/no-notes-icon.svg" alt="">
+
+            <h2 class="text-center text-gray-600 font-bold p-6">Notes not created, Try creating a note!! :)</h2>
+
          </div>
     }
 </div>

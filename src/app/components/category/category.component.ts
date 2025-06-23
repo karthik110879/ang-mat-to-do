@@ -1,22 +1,15 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { NoteComponent } from '../note/note.component';
 import { Note } from '../../models/note.model';
-import {
-    Router,
-    Event,
-    NavigationStart,
-    NavigationEnd,
-    NavigationError,
-    ActivatedRoute,
-} from '@angular/router';
-import { Folder } from '../../models/sidenav.model';
+import {ActivatedRoute} from '@angular/router';
 import { NoteService } from '../../services/note.service';
 import { LocalStorageService } from '../../services/local-storage.service';
-import { INote } from '../../interfaces/note.interface.model';
+import {MatIconModule} from '@angular/material/icon';
+
 
 @Component({
     selector: 'app-category',
-    imports: [NoteComponent],
+    imports: [NoteComponent, MatIconModule],
     templateUrl: './category.component.html',
     styleUrl: './category.component.scss',
 })
