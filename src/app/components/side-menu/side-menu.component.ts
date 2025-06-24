@@ -43,6 +43,15 @@ export class SideMenuComponent implements OnInit {
     selectedNavMenu!:IFolder;
 
     folders: IFolder[] = [];
+
+    settings: IFolder =  {
+            id : '',
+            name : 'Settings',
+            createdUserId: '',
+            updated : new Date('2/20/16'),
+            path : 'settings',
+    }
+
     notes: Folder[] = [
         {
             id: '',
@@ -67,6 +76,11 @@ export class SideMenuComponent implements OnInit {
     constructor() {}
 
     ngOnInit(): void {
+        this.settings.id = this.localStorageService.getUserSettingsId(),
+        this.settings.name = 'Settings',
+        this.settings.path = 'settings',
+        this.settings.createdUserId = this.localStorageService.getLoginUserId(),
+
         this.activatedRouter.paramMap.subscribe(params => {
             console.log('activatedRouter ==>',params.get('category'));
         })
@@ -82,6 +96,11 @@ export class SideMenuComponent implements OnInit {
         this.router.navigate(['/auth/folder/', folder.id]);
     }
 
+    onSelectSettings(settings:IFolder) {
+        console.log('SETTINGS', settings);
+        this.selectedNavMenu = settings;
+        this.router.navigate(['/auth/settings/', this.localStorageService.getUserSettingsId()]);
+    }
     onAddNewFolder() {
         const dialogRef = this.dialogService.open(AddFolderComponent);
         dialogRef.afterClosed().subscribe((d) => {

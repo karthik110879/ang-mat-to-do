@@ -1,37 +1,50 @@
-<mat-list>
-    <div mat-subheader class="flex items-center justify-between">
-        <span>
-            Folders
-        </span>
-        <button mat-icon-button class="example-icon cursor-pointer"
-            aria-label="Example icon-button with share icon"
-            (click)="onAddNewFolder()">
-            <mat-icon>add</mat-icon>
-        </button>
-    </div>
-    @if(folders.length > 0) {
+<div class="flex flex-col h-full overflow-hidden">
+     <mat-list class="flex overflow-y-auto">
+        <div mat-subheader class="flex items-center justify-between">
+            <span>
+                Folders
+            </span>
+            <button mat-icon-button class="example-icon cursor-pointer" aria-label="Example icon-button with share icon"
+                (click)="onAddNewFolder()">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+        @if(folders.length > 0) {
 
         @for (folder of folders; track folder) {
-            <mat-list-item (click)="onSelect(folder)" [class.active]="selectedNavMenu === folder"
-        >
-                <mat-icon matListItemIcon>folder</mat-icon>
-                <div matListItemTitle>{{folder.name}}</div>
-                <div matListItemLine>{{folder.path }}</div>
-                <!-- <div matListItemLine>{{folder.updated | date}}</div> -->
-            </mat-list-item>
+        <mat-list-item (click)="onSelect(folder)" [class.active]="selectedNavMenu === folder">
+            <mat-icon matListItemIcon>folder</mat-icon>
+            <div matListItemTitle>{{folder.name}}</div>
+            <div matListItemLine>{{folder.path }}</div>
+            <!-- <div matListItemLine>{{folder.updated | date}}</div> -->
+        </mat-list-item>
         }
-    } @else {
+        } @else {
         <div class="flex content-center justify-center p-1">
             <p class="flex p-4">No folders created</p>
         </div>
-    }
-    <mat-divider></mat-divider>
-    <div mat-subheader>Recent Notes</div>
-    @for (note of notes; track note) {
-    <mat-list-item>
-        <mat-icon matListItemIcon>note</mat-icon>
-        <div matListItemTitle>{{note.name}}</div>
-        <div matListItemLine>{{note.updated | date}}</div>
-    </mat-list-item>
-    }
-</mat-list>
+        }
+        <!-- <mat-divider></mat-divider>
+        <div mat-subheader>Recent Notes</div>
+        @for (note of notes; track note) {
+        <mat-list-item>
+            <mat-icon matListItemIcon>note</mat-icon>
+            <div matListItemTitle>{{note.name}}</div>
+            <div matListItemLine>{{note.updated | date}}</div>
+        </mat-list-item>
+        } -->
+    </mat-list>
+
+     <mat-divider></mat-divider>
+
+    <mat-list class="">
+        <mat-list-item  (click)="onSelectSettings(settings)"  [class.active]="selectedNavMenu === settings">
+            <mat-icon matListItemIcon fontSet="fa" fontIcon="fa-cog" aria-label="Settings"></mat-icon>
+            <div matListItemTitle>Settings</div>
+            <div matListItemLine>settings</div>
+            <!-- <div matListItemLine>{{folder.updated | date}}</div> -->
+        </mat-list-item>
+
+    </mat-list>
+
+</div>

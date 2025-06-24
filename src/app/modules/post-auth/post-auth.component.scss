@@ -1,16 +1,3 @@
-.container {
-  // height: 100vh;
-  // background: #e7eaf6;
+mat-drawer-container, mat-drawer, .example-sidenav {
+  height: 100vh; /* critical fix */
 }
-
-.example-sidenav-content {
-  // height: 100vh;
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
-  // border: 1px solid black;
-}
-
-// .example-sidenav {
-//   padding: 20px;
-// }
