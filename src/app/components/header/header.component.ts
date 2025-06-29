@@ -23,6 +23,13 @@ export class HeaderComponent {
     }
 
     onLogout() {
-        this.authService.logout();
+        this.authService.logout().subscribe({
+            next:(data) => {
+                console.log(data,'data');
+            },
+            error:(error) => {
+                console.log(error,'error');
+            }
+        })
     }
 }

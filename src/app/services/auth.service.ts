@@ -33,9 +33,13 @@ export class AuthService {
         );
     }
 
-    logout() {
+    logout(): Observable<any> {
         this.localstorageService.clearAuthData();
-        this.router.navigate(['/login']);
+          return this.http.post<ILoginUser>(
+            this.API_ENDPOINT + `auth/logout`,
+            ''
+        );
+
     }
 
     toLogin(user:ILoginUser) {
