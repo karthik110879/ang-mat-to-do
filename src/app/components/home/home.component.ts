@@ -1,8 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { NoteComponent } from '../note/note.component';
-import { Note } from '../../models/note.model';
 import { CategoryComponent } from '../category/category.component';
-import { routes } from '../../app.routes';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { NoteEditorComponent } from '../note-editor/note-editor.component';
@@ -28,6 +25,9 @@ export class HomeComponent implements OnInit {
         this.actRouter.paramMap.subscribe((params) => {
             if(params.get('settingId')) {
                 this.isSettingsVisible = this.router.url.includes('auth/settings') ? true : false;
+            }
+            if(params.get('folderId')) {
+                this.itemId = params.get('folderId');
             }
             console.log('MENU NAME ', this.itemId);
         });

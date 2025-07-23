@@ -1,11 +1,23 @@
-<div class="mx-auto flex flex-col max-w-sm items-center gap-x-4 rounded-xl bg-white p-6 shadow-lg outline outline-black/5 dark:bg-slate-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10 overflow-auto"
+<div class="mx-auto flex flex-col max-w-sm items-center gap-x-4 rounded-xl bg-white p-6 shadow-lg
+            outline outline-black/5 dark:bg-slate-800 dark:shadow-none dark:-outline-offset-1
+            dark:outline-white/10 cursor-pointer"
     (click)="opeNote($event)">
-    <div class="w-50 h-55 ">
+    <div class="w-50 h-55">
+        <div class="flex justify-end items-center">
+            <button mat-icon-button class="example-icon" aria-label="Example icon-button with heart icon" title="Delete notes"
+                (click)="onDeleteNotes($event)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
+        <div class="container">
+            <div class="text-xl font-medium text-black dark:text-white">
+                {{noteMeta.title}}
+            </div>
 
-        <div class="text-xl font-medium text-black dark:text-white">{{noteMeta.title}}</div>
-        <p class="text-gray-500 dark:text-gray-400 ">
-            {{noteMeta.content}}
-        </p>
+            <div class="prose prose-sm text-gray-500 dark:text-gray-400 overflow-hidden text-ellipsis line-clamp-3"
+                [innerHTML]="noteMeta.content">
+            </div>
+        </div>
     </div>
-
 </div>
+
