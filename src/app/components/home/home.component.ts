@@ -1,30 +1,34 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { NoteComponent } from '../note/note.component';
-import { Note } from '../../models/note.model';
 import { CategoryComponent } from '../category/category.component';
-import { routes } from '../../app.routes';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { NoteEditorComponent } from '../note-editor/note-editor.component';
+import { SettingsComponent } from '../settings/settings.component';
 
 @Component({
     selector: 'app-home',
-    imports: [CategoryComponent],
+    imports: [CategoryComponent, SettingsComponent],
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit {
     private readonly actRouter = inject(ActivatedRoute);
+    private readonly router = inject(Router);
     private readonly dialogService = inject(MatDialog);
 
 
-    itemId: string | null = null;
-
+    itemId:string | null = '';
+    isSettingsVisible:boolean = false;
     constructor() {}
 
     ngOnInit(): void {
         this.actRouter.paramMap.subscribe((params) => {
-            this.itemId = params.get('folderId'); // Reactively update on actRouter changes
+            if(params.get('settingId')) {
+                this.isSettingsVisible = this.router.url.includes('auth/settings') ? true : false;
+            }
+            if(params.get('folderId')) {
+                this.itemId = params.get('folderId');
+            }
             console.log('MENU NAME ', this.itemId);
         });
     }

@@ -49,6 +49,16 @@ export class LocalStorageService {
         return JSON.parse(authData);
     }
 
+    getAuthToken() {
+        const authData = this.getAuthData();
+        return authData?.token || null;
+    }
+
+    getUserSettingsId() {
+        const authData = this.getAuthData();
+        return authData?.user.settingId || null;
+    }
+
     getLoginUserId() {
         const authData = this.getAuthData();
         return authData?.user?.id;

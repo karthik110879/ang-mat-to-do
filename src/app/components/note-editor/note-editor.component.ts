@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { MatButtonModule } from '@angular/material/button';
 import {
     MAT_DIALOG_DATA,
-    MatDialog,
     MatDialogModule,
     MatDialogRef,
 } from '@angular/material/dialog';
@@ -31,6 +30,7 @@ export class NoteEditorComponent implements OnInit, OnDestroy {
     private readonly dialogRef = inject(MatDialogRef<NoteEditorComponent>);
     readonly noteService = inject(NoteService);
     readonly fb = inject(FormBuilder);
+
     newNoteTitie:string = '';
     folderId:string = '';
     editor!: Editor;
@@ -71,17 +71,42 @@ export class NoteEditorComponent implements OnInit, OnDestroy {
             title: '',
             content: this.noteForm.controls['content'].value
         }
-        this.noteService.createNote(this.userId, this.folderId, newNote).subscribe({
-            next:(data) => {
-                console.log('data',data);
+        if (this.dailogContent.type === 'new') {
+            newNote.title = this.noteForm.controls['title'].value;
+        } else {
+            newNote.title = this.dailogContent.title;
+        }
+        console.log('newNote', newNote, this.dailogContent.type);
+        if(this.dailogContent.type !== 'new') {
+            this.noteService.updateNote(
+                this.userId,
+                this.folderId,
+                this.dailogContent.noteId,
+                newNote
+            ).subscribe({
+                next:(data) => {
+                    console.log('data',data);
+                    this.dialogRef.close();
+                },
+                error: (error) => {
+                    console.log('error',error);
+                }
+            })
+            return;
+        } else {
 
-                this.dialogRef.close();
-            },
-            error: (error) => {
-                console.log('error',error);
+            this.noteService.createNote(this.userId, this.folderId, newNote).subscribe({
+                next:(data) => {
+                    console.log('data',data);
 
-            }
-        })
+                    this.dialogRef.close();
+                },
+                error: (error) => {
+                    console.log('error',error);
+
+                }
+            })
+        }
     }
 
     ngOnDestroy(): void {

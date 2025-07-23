@@ -6,3 +6,18 @@ mat-list-item:hover {
 mat-list-item.active {
   background-color: #1c51bb; /* Light blue for selected item */
 }
+
+
+.example-spacer {
+  flex: 1 1 auto;
+  flex-direction: column;
+}
+
+.settings-item {
+    margin-top: auto; // pushes it to the bottom
+  }
+
+
+  mat-drawer-container, mat-drawer, .example-sidenav {
+  height: 100vh; /* critical fix */
+}

@@ -1,17 +1,21 @@
-<div class="home-container container-mx-auto ">
+<div class="home-container container-mx-auto">
+    @if (isSettingsVisible) {
+      <app-settings class="w-full h-full"></app-settings>
+    } @else {
 
-    <div class="main-title flex justify-between w-full">
-        <h1>All Notes</h1>
+        <div class="main-title flex justify-between w-full">
+            <h1>All Notes</h1>
 
-        <button class="rounded-md" (click)="openNewNote($event)">
-            <span
-                class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2
-                    dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
-                Add+
-            </span>
-        </button>
-    </div>
+            <button class="rounded-md" (click)="openNewNote($event)">
+                <span
+                    class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2
+                        dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                    Add+
+                </span>
+            </button>
+        </div>
 
-    <app-category class="w-full h-full"/>
+        <app-category class="w-full h-full"/>
+    }
 
 </div>

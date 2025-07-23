@@ -25,8 +25,13 @@ const routes: Routes = [
                 path: 'folder/:category/:categoryId',
                 component: HomeComponent,
             },
+            {
+                path: 'settings/:settingId',
+                component: HomeComponent,
+            },
         ],
     },
+
 ];
 
 @NgModule({
