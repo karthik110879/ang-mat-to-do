@@ -44,7 +44,8 @@ export class AddFolderComponent implements OnInit{
             next:(fldrData) => {
                 console.log('fileData',fldrData);
                 this.dialogRef.close(fldrData);
-                this.notify.showSuccess('Note Created Successfully')
+                this.notify.showSuccess('Note Created Successfully');
+                this.notify.refreshFoldersObs.next(true);
             },
             error:(error) => {
                 console.log('error', error);

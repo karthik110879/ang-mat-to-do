@@ -8,7 +8,7 @@ import { Observable, Subject } from 'rxjs';
 export class NotificationService {
     private readonly toastr = inject(ToastrService);
 
-    refreshNotesObs:Subject<void> = new Subject<void>();
+    refreshNotesObs:Subject<boolean> = new Subject<boolean>();
     refreshFoldersObs:Subject<boolean> = new Subject<boolean>();
     refreshnotes = this.refreshFoldersObs.asObservable();
     refreshfolders = this.refreshNotesObs.asObservable();
@@ -58,7 +58,7 @@ export class NotificationService {
         this.refreshFoldersObs.next(data);
     }
 
-    refreshNotes() {
-        this.refreshNotesObs.next();
+    refreshNotes(data:boolean = false) {
+        this.refreshNotesObs.next(data);
     }
 }

@@ -89,7 +89,7 @@ export class NoteEditorComponent implements OnInit, OnDestroy {
                 next:(data) => {
                     console.log('data',data);
                      this.notificationService.showSuccess('Note Updated Successfully');
-                    this.notificationService.refreshfolder(true);
+                    this.notificationService.refreshNotes(true);
                     this.dialogRef.close();
                 },
                 error: (error) => {
@@ -103,7 +103,7 @@ export class NoteEditorComponent implements OnInit, OnDestroy {
                 next:(data) => {
                     console.log('data',data);
                     this.notificationService.showSuccess('Note Created Successfully');
-                    this.notificationService.refreshfolder(true);
+                    this.notificationService.refreshNotes(true);
                     this.dialogRef.close();
                 },
                 error: (error) => {
