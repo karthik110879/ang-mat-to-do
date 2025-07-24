@@ -11,18 +11,31 @@
         </div>
         @if(folders.length > 0) {
 
-        @for (folder of folders; track folder) {
-        <mat-list-item (click)="onSelect(folder)" [class.active]="selectedNavMenu === folder">
-            <mat-icon matListItemIcon>folder</mat-icon>
-            <div matListItemTitle>{{folder.name}}</div>
-            <div matListItemLine>{{folder.path }}</div>
-            <!-- <div matListItemLine>{{folder.updated | date}}</div> -->
-        </mat-list-item>
-        }
+            @for (folder of folders; track folder) {
+
+                <mat-list-item (click)="onSelect(folder)" [class.active]="selectedNavMenu === folder" >
+                    <div class="w-full flex justify-between items-center">
+                        <div class="flex gap-3">
+                            <mat-icon matListItemIcon>folder</mat-icon>
+                            <div matListItemTitle >
+                                {{folder.name}}
+                            </div>
+                            <!-- <div matListItemLine>{{folder.path }}</div> -->
+                            <!-- <div matListItemLine>{{folder.updated | date}}</div> -->
+                        </div>
+                        <button mat-icon-button  aria-label="Delete"
+                            class="text-red-500 hover:text-red-700" (click)="openDeleteFolderAlert($event, folder)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
+
+                </mat-list-item>
+
+            }
         } @else {
-        <div class="flex content-center justify-center p-1">
-            <p class="flex p-4">No folders created</p>
-        </div>
+            <div class="flex content-center justify-center p-1">
+                <p class="flex p-4">No folders created</p>
+            </div>
         }
         <!-- <mat-divider></mat-divider>
         <div mat-subheader>Recent Notes</div>

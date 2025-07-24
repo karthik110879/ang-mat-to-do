@@ -26,5 +26,7 @@ export class FolderService {
 
     updateFolderTitle() {}
 
-    deleteFolder() {}
+    deleteFolder(userId:string, folderId:string): Observable<any> {
+        return this.http.delete(this.API_ENDPOINT + `auth/user/${userId}/folder/${folderId}`);
+    }
 }

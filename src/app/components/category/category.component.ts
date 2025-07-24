@@ -35,7 +35,7 @@ export class CategoryComponent implements OnInit {
             //we pick from ls
         });
 
-        this.notificationService.refreshFoldersObs.subscribe((data) => {
+        this.notificationService.refreshNotesObs.subscribe((data) => {
             if (data) {
                 this.getAllNotes(this.selectedFolderId);
             }

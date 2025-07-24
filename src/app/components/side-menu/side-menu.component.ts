@@ -13,6 +13,8 @@ import { AddFolderComponent } from '../add-folder/add-folder.component';
 import { FolderService } from '../../services/folder.service';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { IFolder } from '../../interfaces/folder.interface.model';
+import { ConfirmationComponent } from '../confirmation/confirmation.component';
+import { NotificationService } from '../../services/notification.service';
 
 
 
@@ -37,6 +39,7 @@ export class SideMenuComponent implements OnInit {
       private readonly activatedRouter = inject(ActivatedRoute);
       private readonly localStorageService = inject(LocalStorageService);
       private readonly folderService = inject(FolderService);
+      private readonly notificationService = inject(NotificationService);
 
 
     selectedNavMenu!:IFolder;
@@ -83,6 +86,12 @@ export class SideMenuComponent implements OnInit {
         this.activatedRouter.paramMap.subscribe(params => {
             console.log('activatedRouter ==>',params.get('category'));
         })
+
+        this.notificationService.refreshFoldersObs.subscribe((data) => {
+            if (data) {
+                this.getAllFolders(this.localStorageService.getLoginUserId());
+            }
+        })
         const uiserId = this.localStorageService.getLoginUserId();
         this.getAllFolders(uiserId);
     }
@@ -107,9 +116,51 @@ export class SideMenuComponent implements OnInit {
         });
     }
 
+    openDeleteFolderAlert(event:any, folder:IFolder) {
+            event.stopPropagation();
+
+            const dialogRef = this.dialogService.open(ConfirmationComponent, {
+                data: {
+                    title: 'Delete folder?',
+                    message: 'Would you like to delete this folder?',
+                    confirmText: 'Yes',
+                    cancelText: 'No'
+                }
+            });
+
+            dialogRef.afterClosed().subscribe((d) => {
+                console.log('After Closed ==>', d);
+                if(d) {
+                    // Perform delete action
+                    console.log('File deleted');
+                    this.onDeleteFolder(folder);
+                }
+            });
+        }
+
+    onDeleteFolder(folder:IFolder) {
+        console.log('Delete Folder', folder);
+        this.folderService.deleteFolder(this.localStorageService.getLoginUserId(), folder.id).subscribe({
+            next:(data) => {
+                console.log('data',data);
+                this.folders = [...this.folders];
+                this.folders = this.folders.filter(f => f.id !== folder.id);
+                // this.folders = [...this.folders];
+                this.notificationService.showSuccess('Folder deleted successfully');
+                //announce refresh to the parent component
+                this.notificationService.refreshfolder(true);
+            },
+            error:(error) => {
+                console.log('error',error);
+                this.notificationService.showError('Error deleting folder', error.message);
+            }
+        })
+    }
+
     getAllFolders(userId:string) {
         this.folderService.getAllFolders(userId).subscribe({
             next:(data) => {
+                this.folders = [];
                 console.log('data',data);
                 data.forEach((fldr:any) => {
                     const folder:IFolder = {
