@@ -24,7 +24,6 @@ import { IFolder } from '../../interfaces/folder.interface.model';
         MatIconModule,
         MatDividerModule,
         MatToolbarModule,
-        DatePipe,
         FormsModule,
         CommonModule,
         RouterModule,

@@ -9,6 +9,7 @@ import {
 import { Editor, NgxEditorComponent, NgxEditorMenuComponent, Toolbar } from 'ngx-editor';
 import { NoteService } from '../../services/note.service';
 import { LocalStorageService } from '../../services/local-storage.service';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
     selector: 'app-note-editor',
@@ -29,6 +30,7 @@ export class NoteEditorComponent implements OnInit, OnDestroy {
     readonly localstorageService = inject(LocalStorageService);
     private readonly dialogRef = inject(MatDialogRef<NoteEditorComponent>);
     readonly noteService = inject(NoteService);
+    readonly notificationService = inject(NotificationService);
     readonly fb = inject(FormBuilder);
 
     newNoteTitie:string = '';
@@ -86,6 +88,8 @@ export class NoteEditorComponent implements OnInit, OnDestroy {
             ).subscribe({
                 next:(data) => {
                     console.log('data',data);
+                     this.notificationService.showSuccess('Note Updated Successfully');
+                    this.notificationService.refreshfolder(true);
                     this.dialogRef.close();
                 },
                 error: (error) => {
@@ -98,7 +102,8 @@ export class NoteEditorComponent implements OnInit, OnDestroy {
             this.noteService.createNote(this.userId, this.folderId, newNote).subscribe({
                 next:(data) => {
                     console.log('data',data);
-
+                    this.notificationService.showSuccess('Note Created Successfully');
+                    this.notificationService.refreshfolder(true);
                     this.dialogRef.close();
                 },
                 error: (error) => {
