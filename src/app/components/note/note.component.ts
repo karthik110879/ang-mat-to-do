@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, inject, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject, Input, Output, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { NoteEditorComponent } from '../note-editor/note-editor.component';
@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NoteService } from '../../services/note.service';
 import { LocalStorageService } from '../../services/local-storage.service';
+import { ConfirmationComponent } from '../confirmation/confirmation.component';
 
 @Component({
     selector: 'app-note',
@@ -19,6 +20,7 @@ export class NoteComponent implements OnInit, OnDestroy {
     readonly localstorageService = inject(LocalStorageService);
     readonly noteService = inject(NoteService);
 
+    @Output() deleteNote:EventEmitter<boolean> = new EventEmitter(false);
     @Input() noteMeta!:any;
 
     userId: string = '';
@@ -47,17 +49,36 @@ export class NoteComponent implements OnInit, OnDestroy {
         });
     }
 
-    onDeleteNotes(event:any) {
+    openDeleteAlert(event:any) {
         event.stopPropagation();
-        console.log('onDeleteNotes', event);
-        // Implement delete functionality here
-        // You can call a service to delete the note
-        // and then refresh the note list
-        // For now, just log the event
+
+        const dialogRef = this.dialogService.open(ConfirmationComponent, {
+            data: {
+                title: 'Delete note?',
+                message: 'Would you like to delete this note?',
+                confirmText: 'Yes',
+                cancelText: 'No'
+            }
+        });
+
+        dialogRef.afterClosed().subscribe((d) => {
+            console.log('After Closed ==>', d);
+            if(d) {
+                // Perform delete action
+                console.log('File deleted');
+                this.onDeleteNotes();
+            }
+        });
+    }
+
+    onDeleteNotes() {
+
         console.log('Delete Note', this.noteMeta);
         this.noteService.deleteNote(this.noteMeta.userId, this.noteMeta.folderId, this.noteMeta.noteId).subscribe({
             next: (data) => {
                 console.log('Note deleted successfully', data);
+                //announce refresh to the parent component
+                this.deleteNote.emit(true);
 
             },
             error: (error) => {

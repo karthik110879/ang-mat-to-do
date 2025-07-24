@@ -5,6 +5,7 @@ import {ActivatedRoute} from '@angular/router';
 import { NoteService } from '../../services/note.service';
 import { LocalStorageService } from '../../services/local-storage.service';
 import {MatIconModule} from '@angular/material/icon';
+import { NotificationService } from '../../services/notification.service';
 
 
 @Component({
@@ -17,6 +18,7 @@ export class CategoryComponent implements OnInit {
     private readonly route = inject(ActivatedRoute);
     private readonly noteService = inject(NoteService);
     private readonly localstorageService = inject(LocalStorageService);
+    private readonly notificationService = inject(NotificationService);
 
     selectedFolderId: string | null = '';
     allNotes:any[] = []
@@ -32,6 +34,12 @@ export class CategoryComponent implements OnInit {
 
             //we pick from ls
         });
+
+        this.notificationService.refreshFoldersObs.subscribe((data) => {
+            if (data) {
+                this.getAllNotes(this.selectedFolderId);
+            }
+        })
     }
 
     getAllNotes(folderId: any) {
@@ -51,5 +59,12 @@ export class CategoryComponent implements OnInit {
     addNewNote() {
         const newNote = new Note('', '', false);
         console.log('New note ', newNote);
+    }
+
+
+    handleDeleteNote(shouldRefresh:boolean) {
+        if(shouldRefresh) {
+            this.getAllNotes(this.selectedFolderId);
+        }
     }
 }

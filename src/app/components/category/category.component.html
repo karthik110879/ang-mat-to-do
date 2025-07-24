@@ -3,7 +3,7 @@
         <div class="flex flex-wrap w-full gap-6">
 
             @for (note of allNotes; track note?.id ?? note) {
-                <app-note [noteMeta]="note" />
+                <app-note [noteMeta]="note" (deleteNote)="handleDeleteNote($event)"/>
             }
         </div>
     } @else {

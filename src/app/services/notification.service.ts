@@ -1,5 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
@@ -7,6 +8,10 @@ import { ToastrService } from 'ngx-toastr';
 export class NotificationService {
     private readonly toastr = inject(ToastrService);
 
+    refreshNotesObs:Subject<void> = new Subject<void>();
+    refreshFoldersObs:Subject<boolean> = new Subject<boolean>();
+    refreshnotes = this.refreshFoldersObs.asObservable();
+    refreshfolders = this.refreshNotesObs.asObservable();
     constructor() {}
 
     showSuccess(title:string, desc?:string) {
@@ -47,5 +52,13 @@ export class NotificationService {
                 timeOut: 3000,
             }
         );
+    }
+
+    refreshfolder(data:boolean = false) {
+        this.refreshFoldersObs.next(data);
+    }
+
+    refreshNotes() {
+        this.refreshNotesObs.next();
     }
 }
